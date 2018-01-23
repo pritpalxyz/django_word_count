@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+<div align="center">
+<h1>PAGE 2</h1>
+            <table border="1">
+                    <tr>
+                        <th></th>
+                        <th>Keyword</th>
+                        <th>Frequency</th>
+                    </tr>
+                    {% for data in whole_data %}
+
+                        <tr>
+                            <td>{{data.index}}</td>
+                            <td>{{data.key}}</td>
+                            <td>{{data.fre}}</td>
+                        </tr>
+
+
+                    {% endfor %}
+                </table>
+
+
+
+    <hr/>
+    <button onclick="location.href = '/';">New Scan</button> <button onclick="window.history.go(-1); return false;">Go Back</button>
+    <br/>
+    <br/>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PAGE 1</title>
+</head>
+<body>
+
+<div align="center">
+
+        <form action="/page_2/" method="post">
+            {% csrf_token %}
+
+            <h3>Enter your text</h3>
+            <textarea name="big_text" placeholder="Paste your text here" cols="120" rows="40" maxlength="8000"  required></textarea>
+            <br/>
+            <input type="submit" value="Click to submit"/>
+
+        </form>
+
+</div>
+
+</body>
+</html>
