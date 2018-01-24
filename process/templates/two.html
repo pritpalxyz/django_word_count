@@ -11,17 +11,30 @@
 <div align="center">
 <h1>PAGE 2</h1>
             <table border="1">
+                <tr>
+                        <th></th>
+                        <th>Score</th>
+                        <th>{{Score_val}}</th>
+                          <th></th>
+                    <tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                          <th></th>
                     <tr>
                         <th></th>
                         <th>Keyword</th>
                         <th>Frequency</th>
-                    </tr>
+                          <th></th>
+                     </tr>
                     {% for data in whole_data %}
 
                         <tr>
                             <td>{{data.index}}</td>
                             <td>{{data.key}}</td>
                             <td>{{data.fre}}</td>
+                            <td> <a href="/drop/{{data.index}}" style="color:red">unwanted</a> </td>
                         </tr>
 
 
