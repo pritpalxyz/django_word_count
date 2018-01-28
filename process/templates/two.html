@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 </head>
 <body>
 
@@ -10,44 +14,47 @@
 
 <div align="center">
 <h1>PAGE 2</h1>
-            <table border="1">
-                <tr>
+
+    <table id="table_id" class="display" style="width:400px">
+    <thead>
+        <tr>
                         <th></th>
                         <th>Score</th>
                         <th>{{Score_val}}</th>
-                          <th></th>
-                    <tr>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                          <th></th>
-                    <tr>
-                        <th></th>
-                        <th>Keyword</th>
-                        <th>Frequency</th>
-                          <th></th>
-                     </tr>
-                    {% for data in whole_data %}
+
+        <tr>
+    </thead>
+    <tbody>
+       {% for data in whole_data %}
 
                         <tr>
                             <td>{{data.index}}</td>
-                            <td>{{data.key}}</td>
+                            <td>{{data.key}}
+                          <a href="/drop/{{data.index}}">
+                            <img src="https://www.atabix.com/static/images/close-icon.svg" style="width:10px;height:10px"/> </a>
+                            </td>
                             <td>{{data.fre}}</td>
-                            <td> <a href="/drop/{{data.index}}" style="color:red">unwanted</a> </td>
+
                         </tr>
 
 
                     {% endfor %}
-                </table>
+
+    </tbody>
+</table>
 
 
 
     <hr/>
-    <button onclick="location.href = '/';">New Scan</button> <button onclick="window.history.go(-1); return false;">Go Back</button>
+    <button onclick="location.href = '/';">New Scan</button> <button onclick="location.href ='/go-back/'">Go Back</button>
     <br/>
     <br/>
 
 </div>
+<script>
+    $(document).ready( function () {
+    $('#table_id').DataTable();
+} );
+</script>
 </body>
 </html>

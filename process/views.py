@@ -16,11 +16,20 @@ class homeview(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(self.__class__, self).get_context_data(**kwargs)
         try:
+            value = self.request.session['keep_text']
+            if value == True:
+                content_text = self.request.session['big_text']
+            else:
+                content_text = ''
+        except:
+            content_text = ''
+        try:
             file_name = self.request.session['df']
             del self.request.session['df']
             os.remove(file_name)
         except:
             pass
+        context['content_text'] = content_text
         return context
 
 
@@ -58,11 +67,14 @@ def page_two(request):
         print "EDIT DONE"
     except:
         print "NOT EDITED"
+        a_big_text = request.POST['big_text']
+        request.session['big_text'] = a_big_text
         cleaned_text = clean_document(request.POST['big_text'])
         whole_data = word_freq_dist(cleaned_text)
         file_name = "{0}.pkl".format(str(uuid.uuid4()))
         whole_data.to_pickle(file_name)
         request.session['df'] = file_name
+    request.session['keep_text'] = False
     Score_val = Score(whole_data)
     template = loader.get_template('two.html')
 
@@ -87,9 +99,6 @@ def page_two(request):
 def drop_val(request, index):
     file_name = request.session['df']
     dataframe = pd.read_pickle(file_name)
-    # dataframe = pd.DataFrame([dataframe])
-    print dataframe
-    # dataframe.drop(dataframe.index(index))
     index = int(index)
     dataframe = dataframe.drop(dataframe.index[[index,]])
     dataframe = dataframe.reset_index(drop=True)
@@ -97,6 +106,11 @@ def drop_val(request, index):
     request.session['df'] = file_name
     request.session['edit'] = True
     return HttpResponseRedirect('/page_2/')
+
+
+def go_back(request):
+    request.session['keep_text'] = True
+    return  HttpResponseRedirect('/')
 
 
 
