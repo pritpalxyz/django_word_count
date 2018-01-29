@@ -14,13 +14,15 @@
 
 <div align="center">
 <h1>PAGE 2</h1>
+    <h3>Score: {{Score_val}}</h3>
 
-    <table id="table_id" class="display" style="width:400px">
+    <table id="table_id"  style="width:400px">
     <thead>
         <tr>
+
                         <th></th>
-                        <th>Score</th>
-                        <th>{{Score_val}}</th>
+                        <th>Key</th>
+                        <th>Frequency</th>
 
         <tr>
     </thead>
@@ -53,7 +55,11 @@
 </div>
 <script>
     $(document).ready( function () {
-    $('#table_id').DataTable();
+
+$('#table_id').dataTable( {
+    "iDisplayLength": 10
+});
+
 } );
 </script>
 </body>
